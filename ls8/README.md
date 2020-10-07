@@ -17,7 +17,7 @@ The CPU could support 256 instructions, as well, but we won't need them.
 For starters, we'll execute code that stores the value 8 in a register,
 then prints it out:
 
-```
+```text
 # print8.ls8: Print the number 8 on the screen
 
 10000010 # LDI R0,8
@@ -51,7 +51,7 @@ See [the LS-8 spec](../LS8-spec.md) for more details.
 The above program is already hardcoded into the source file `cpu.py`. To run it,
 you will eventually:
 
-```
+```text
 python3 ls8.py
 ```
 
@@ -134,7 +134,7 @@ name instead of by numeric value.
 
 In `run()` in your if-else block, exit the loop if a `HLT` instruction is
 encountered, regardless of whether or not there are more lines of code in the
-LS-8 program you loaded. 
+LS-8 program you loaded.
 
 We can consider `HLT` to be similar to Python's `exit()` in that we stop
 whatever we are doing, wherever we are.
@@ -162,7 +162,7 @@ into the source. This isn't particularly user-friendly.
 Make changes to `cpu.py` and `ls8.py` so that the program can be specified on
 the command line like so:
 
-```
+```text
 python3 ls8.py examples/mult.ls8
 ```
 
@@ -194,7 +194,7 @@ so you can look in `sys.argv[1]` for the name of the file to load.
 > expect, and print an error and exit if they didn't.
 
 In `load()`, you will now want to use those command line arguments to open a
-file, read in its contents line by line, and save appropriate data into RAM. 
+file, read in its contents line by line, and save appropriate data into RAM.
 
 As you process lines from the file, you should be on the lookout for blank lines
 (ignore them), and you should ignore everything after a `#`, since that's a
@@ -212,7 +212,7 @@ x = int("1010101", 2)  # Convert binary string to integer
 
 Extend your LS8 emulator to support the following program:
 
-```
+```text
 # mult.ls8: Multiply 8x9 and print 72
 
 10000010 # LDI R0,8
@@ -231,7 +231,7 @@ Extend your LS8 emulator to support the following program:
 
 One you run it with `python3 ls8.py examples/mult.ls8`, you should see:
 
-```
+```text
 72
 ```
 
@@ -296,15 +296,15 @@ a high address) and grows _downward_ as things are pushed on. The LS-8 is no
 exception to this.
 
 Implement a system stack per the spec. Add `PUSH` and `POP` instructions. Read
-  the beginning of the spec to see which register is the stack pointer. 
+  the beginning of the spec to see which register is the stack pointer.
   
-* Values themselves should be saved in the ***portion of RAM*** _that is allocated for the stack_. 
-  -  Use the stack pointer to modify the correct block of memory. 
-  - Make sure you update the stack pointer appropriately as you `PUSH` and `POP` items to and from the stack.
+* Values themselves should be saved in the ***portion of RAM*** _that is allocated for the stack_.
+  * Use the stack pointer to modify the correct block of memory.
+  * Make sure you update the stack pointer appropriately as you `PUSH` and `POP` items to and from the stack.
 
 If you run `python3 ls8.py examples/stack.ls8` you should see the output:
 
-```
+```text
 2
 4
 1
@@ -320,7 +320,7 @@ enables you to create reusable functions.
 Subroutines have many similarities to functions in higher-level languages. Just
 as a function in C, JavaScript or Python will jump from the function call, to
 its definition, and then return back to the line of code following the call,
-subroutines will also allow us to execute instructions non-sequentially. 
+subroutines will also allow us to execute instructions non-sequentially.
 
 The stack is used to hold the return address used by `RET`, so you **must**
 implement the stack in step 10, first. Then, add subroutine instructions `CALL`
@@ -332,7 +332,7 @@ and `RET`.
   specific address.
 
   > Note: `CALL` is very similar to the `JMP` instruction. However, there is one
-  > key difference between them. Can you find it in the specs? 
+  > key difference between them. Can you find it in the specs?
 
   * In **any** case where the instruction handler sets the `PC` directly, you
     _don't_ want to advance the PC to the next instruction. So you'll have to
@@ -342,7 +342,7 @@ and `RET`.
 
 If you run `python3 ls8.py examples/call.ls8` you should see the output:
 
-```
+```text
 20
 30
 36
@@ -381,7 +381,7 @@ popped off the stack and execution continues normally.
 This code prints out the letter `A` from the timer interrupt handler
 that fires once per second.
 
-```
+```text
 # interrupts.ls8
 
 10000010 # LDI R0,0XF8
@@ -458,7 +458,7 @@ does it differently than Unix/Mac.
 
 Write an LS-8 assembly program that prints this curve on the screen:
 
-```
+```text
 *
 **
 ****
