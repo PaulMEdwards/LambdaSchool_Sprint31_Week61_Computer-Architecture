@@ -628,6 +628,8 @@ Machine code:
 
 *This is an instruction handled by the ALU.*
 
+`SHL registerA registerB`
+
 Shift the value in registerA left by the number of bits specified in registerB,
 filling the low bits with 0.
 
@@ -639,6 +641,8 @@ AC 0a 0b
 ### SHR
 
 *This is an instruction handled by the ALU.*
+
+`SHR registerA registerB`
 
 Shift the value in registerA right by the number of bits specified in registerB,
 filling the high bits with 0.
