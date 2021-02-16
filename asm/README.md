@@ -11,7 +11,7 @@ files.
 
 This will produce a `.ls8` file for a given source.
 
-```
+```text
 python asm.py source.asm
 ```
 
